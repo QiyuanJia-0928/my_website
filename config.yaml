@@ -10,7 +10,7 @@ params:
    # subtitle: |-
   #    A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
   #    AND RELEASED UNDER THE CREATIVE COMMONS.
-    title: Hi, my name is Mina
+    title: Hi, Welcome to Mina's Page
   blog: {}
   contact: 
     address:
@@ -25,7 +25,7 @@ params:
         title: Email
     enable: yes
     phone:
-      - phone: (000) 000-0000 x1234
+      - phone: (086) 8866-6688 
         title: Phone
   custom_css: []
   custom_js: []
@@ -35,30 +35,24 @@ params:
     text: Please visit [this page](/)
   favicon: favicon.ico
   footer:
-    copyright: Company Name
+    copyright: Mina 
     enable: yes
     quicklinks:
       - alt: HTML5 UP
         text: 'Design: '
         url: https://www.html5up.net
     social:
-      - icon: fa-twitter
-        label: Twitter
-        url: https://www.twitter.com
-      - icon: fa-facebook
-        label: Facebook
-        url: https://www.facebook.com
       - icon: fa-instagram
         label: Instagram
-        url: https://www.instagram.com
+        url: https://www.instagram.com/mina_jiaqiyuan/
       - icon: fa-github
         label: GitHub
-        url: https://www.github.com
+        url: https://github.com/QiyuanJia-0928/
       - icon: fa-linkedin
         label: LinkedIn
-        url: https://www.linkedin.com
+        url: www.linkedin.com/in/qiyuan-mina-jia
   image: ''
-  name: Your name
+  name: Mina Jia
   navigation:
     button1:
       - name: Get Started
@@ -69,31 +63,31 @@ params:
     links:
       - name: Home
         url: '#'
-      - name: Blogs
+      - name: About Me
         url: blogs
-      - name: Generic Blog
-        url: blogs/ipsum
-      - name: Elements
-        url: elements.html
+#      - name: Generic Blog
+#        url: blogs/ipsum
+#      - name: Elements
+#       url: elements.html 
     menu: Menu
     subtitle: By HTML5 Up
     title: Forty
   tiles:
     enable: yes
     showcase:
-      - image: pic01.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Aliquam
-        url: blogs/aliquam
-      - image: pic02.jpg
-        subtitle: Feugiat Amet Tempus
-        title: Tempus
-        url: blogs/tempus
-      - image: pic03.jpg
+      - image: LBS2.jpg
+        subtitle: Draw closer and see behind the walls
+        title: My Career Journey So Far
+        url: blogs/cv
+      - image: Wharton.jpg
+        subtitle: See the world and see myself
+        title: My Life Journey So Far
+        url: blogs/life
+      - image: Unimelb.jpg
         subtitle: Lorem Etiam Nullam
-        title: Magna
+        title: Unimelb
         url: blogs/magna
-      - image: pic04.jpg
+      - image: Mina.jpg
         subtitle: Nisl Sed Aliquam
         title: Ipsum
         url: blogs/ipsum
@@ -108,11 +102,6 @@ params:
   two:
     buttonText: Get Started
     enable: yes
-    subtitle: "Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero.
-      \r\n    Mauris aliquet magna magna sed nunc rhoncus pharetra. \r\n    Pellentesque
-      condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia
-      pellentesque lorem ipsum dolor. \r\n    Nullam et orci eu lorem consequat tincidunt.
-      Vivamus et sagittis libero.\r\n    Mauris aliquet magna magna sed nunc rhoncus
-      amet pharetra et feugiat tempus."
-    title: Massa libero
+    subtitle: "This page is dedicated to sharing some of my life and my work on data analysis and I hope you would enjoy exploring the site" 
+    title: Background
     url: blogs

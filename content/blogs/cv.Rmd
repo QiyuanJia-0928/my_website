@@ -1,0 +1,33 @@
+---
+categories:  
+- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+- ""
+date: "2021-10-20"
+description: My career journey so far ... # the title that will show up once someone gets to this page
+draft: false
+image: cv.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
+
+keywords: ""
+slug: cv # slug is the shorthand URL address... no spaces plz
+title: cv
+---
+* I am an **'AND'** person. I was brought up in **China** and **Australia**. I have lived and studied in **China**, **Australia**, **US** and **UK** and I love the intersection of mathematics, economics, and business. I am an **ENT/FJ**, and my favorite motto is **'draw closer and see behind the walls'**.
+
+* I have carried my interests through to my university studies. I had a semester exchange at **Wharton Business School** where I discovered my passion about impact. Last year, I graduated with a major of **Actuarial Studies** from **University of Melbourne (Unimelb)** and I am currently taking **Honors in Actuarial Studies at Unimelb** and the **Masters in Financial Analysis at London Business School** in parallel.
+
+* In the past, I have explored many opportunities through various internship ranging from **insurtech** to **reinsurance** to **regulator** to **investment banking**. The diversity of roles and multicultural experience, made me **adaptive** in a work environment and provided me with **multiple perspectives of the business** and more importantly **discovery of myself**. I love working in a fast-paced and diverse environment, and I enjoy the people facing element in a career.
+
+* I really love everyone I have met here at **LBS**! Shoutout to the best Data course ever!! In 2022, I will be joining **Morgan Stanley Hong Kong office** as an **Investment Banking Off-cycle Intern**. Hopefully, I will be back in London in not so long.
+
+* Outside of the studies, I enjoy a wide variety of sports：
+
+  + **Badminton**
+  
+  + **Running**
+  
+  + **Swimming**
+  
+  + **Golf**
+
+  _**Feel free to connect with me on LinkedIn!**_
+
