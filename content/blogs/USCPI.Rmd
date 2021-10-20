@@ -12,6 +12,21 @@ slug: USCPI # slug is the shorthand URL address... no spaces plz
 title: US yield curve since 1960-01-01
 ---
 
+```{r, setup, echo=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+options(digits = 3)
+
+# default figure size
+knitr::opts_chunk$set(
+  fig.width=6.75, 
+  fig.height=6.75,
+  fig.align = "center"
+)
+```
 
 ```{r load-libraries, echo=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
@@ -31,7 +46,7 @@ library(rvest)
 
 
 
-# Challenge 2: How has the CPI and its components changed over the last few years?
+# How has the CPI and its components changed over the last few years?
 
 Remember how we used the tidyqant package to download CPI data. In this exercise, I would like you to do the following:
 

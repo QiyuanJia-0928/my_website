@@ -16,131 +16,10 @@ title: US yield curve since 1960-01-01
 
 
 <p>In our case we will look at US data and use the <a href="https://fred.stlouisfed.org/">FRED database</a> to download historical yield curve rates, and plot the yield curves since 1999 to see when the yield curves flatten. If you want to know more, a very nice article that explains the <a href="https://fredblog.stlouisfed.org/2018/10/the-data-behind-the-fear-of-yield-curve-inversions/">yield curve is and its inversion can be found here</a>.</p>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.4     v dplyr   1.0.7
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   2.0.1     v forcats 0.5.1</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
-<pre><code>## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;mosaic&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;ggthemes&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     theme_map</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
-##   method from   
-##   +.gg   ggplot2</code></pre>
-<pre><code>## here() starts at C:/Users/forma/Desktop/my_website</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;skimr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     n_missing</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
-<pre><code>## 载入需要的程辑包：lubridate</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<pre><code>## 载入需要的程辑包：PerformanceAnalytics</code></pre>
-<pre><code>## 载入需要的程辑包：xts</code></pre>
-<pre><code>## 载入需要的程辑包：zoo</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;zoo&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     as.Date, as.Date.numeric</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;xts&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     first, last</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;PerformanceAnalytics&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     legend</code></pre>
-<pre><code>## 载入需要的程辑包：quantmod</code></pre>
-<pre><code>## 载入需要的程辑包：TTR</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
-##   method            from
-##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## == Need to Learn tidyquant? ====================================================
-## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
-## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;infer&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
-## 
-##     prop_test, t_test</code></pre>
-<pre><code>## 载入需要的程辑包：airports</code></pre>
-<pre><code>## 载入需要的程辑包：cherryblossom</code></pre>
-<pre><code>## 载入需要的程辑包：usdata</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;openintro&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     dotPlot</code></pre>
-<pre><code>## The following objects are masked from &#39;package:lattice&#39;:
-## 
-##     ethanol, lsegments</code></pre>
-<pre><code>## 
-## 载入程辑包：&#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     rescale</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor</code></pre>
 <p>First, we will load the yield curve data file that contains data on the yield curve since 1960-01-01</p>
-<pre class="r"><code>yield_curve &lt;- read_csv(here::here(&quot;data&quot;, &quot;yield_curve.csv&quot;))</code></pre>
-<pre><code>## Rows: 6884 Columns: 5</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
-## Delimiter: &quot;,&quot;
-## chr  (3): series_id, maturity, duration
-## dbl  (1): value
-## date (1): date</code></pre>
-<pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>glimpse(yield_curve)</code></pre>
+<pre class="r"><code>yield_curve &lt;- read_csv(here::here(&quot;data&quot;, &quot;yield_curve.csv&quot;))
+
+glimpse(yield_curve)</code></pre>
 <pre><code>## Rows: 6,884
 ## Columns: 5
 ## $ date      &lt;date&gt; 1960-01-01, 1960-02-01, 1960-03-01, 1960-04-01, 1960-05-01,~
@@ -160,11 +39,11 @@ title: US yield curve since 1960-01-01
 <h2>Plotting the yield curve</h2>
 <div id="yields-on-us-treasury-notesbillsbonds-by-duration-since-1999-on-a-year-by-year-basis" class="section level3">
 <h3>Yields on US Treasury Notes/Bills/Bonds by duration since 1999 on a year-by-year basis</h3>
-<p><img src="/blogs/yield_files/figure-html/yield_curve_1-1.png" width="100%" /></p>
+<p><img src="/blogs/yield_files/figure-html/yield_curve_1-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="monthly-yields-on-us-rates-by-duration-since-1999-on-a-year-by-year-basis" class="section level3">
 <h3>Monthly yields on US rates by duration since 1999 on a year-by-year basis</h3>
-<p><img src="C:/Users/forma/Desktop/my_website/images/yield_curve2.png" width="100%" /></p>
+<p><img src="C:/Users/forma/Desktop/my_website/images/yield_curve2.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre><code>## # A tibble: 2,720 x 7
 ##    date       series_id value maturity duration               Year Month
 ##    &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;
@@ -196,7 +75,7 @@ title: US yield curve since 1960-01-01
 ##  9 1999-09-01 TB3MS      4.68 3m       3-Month Treasury Bill  1999     9
 ## 10 1999-10-01 TB3MS      4.86 3m       3-Month Treasury Bill  1999    10
 ## # ... with 534 more rows</code></pre>
-<p><img src="/blogs/yield_files/figure-html/yield_curve_3-1.png" width="100%" /></p>
+<p><img src="/blogs/yield_files/figure-html/yield_curve_3-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>According to <a href="https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States">Wikipedia’s list of recession in the United States</a>, since 1999 there have been two recession in the US: between Mar 2001–Nov 2001 and between Dec 2007–June 2009. Does the yield curve seem to flatten before these recessions? Can a yield curve flattening really mean a recession is coming in the US? Since 1999, when did short-term (3 months) yield more than longer term (10 years) debt?</p>
 <p>Besides calculating the spread (10year - 3months), there are a few things we need to do to produce our final plot</p>
 <ol style="list-style-type: decimal">
@@ -268,7 +147,7 @@ tidy_yield %&gt;%
     plot.caption = element_text(size = 10),
     legend.position = &quot;none&quot; 
     ) </code></pre>
-<p><img src="/blogs/yield_files/figure-html/setup_US-recessions-1.png" width="672" /></p>
+<p><img src="/blogs/yield_files/figure-html/setup_US-recessions-1.png" width="648" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>This FRED graph effectively illustrates that every recession since 1957 has been preceded by a yield curve inversion. (Note that the lag between the inversion and a recession varies: With the 10-year and 1-year yields, the lag is between 8 and 19 months, with an average of about 13 months.) A common interpretation is that the yield curve measures investors’ expectations of economic growth in the current period compared with economic growth in the future. According to this interpretation, a yield curve inversion implies that investors expect current economic growth to exceed future economic growth, indicating that a recession is likely.</p>
 </blockquote>

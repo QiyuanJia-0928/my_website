@@ -85,10 +85,10 @@ params:
         url: blogs/life
       - image: Unimelb.jpg
         subtitle: 
-        title: Opinion polls for the 2021 German elections
-        url: blogs/german
-      - image: cpi.png
-        subtitle: 
+#        title: Opinion polls for the 2021 German elections
+ #       url: blogs/german
+ #     - image: cpi.png
+  #      subtitle: 
         title: US CPI Component Changes Over Time
         url: blogs/USCPI
       - image: yield.jpg
