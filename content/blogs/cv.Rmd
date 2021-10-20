@@ -9,7 +9,7 @@ image: cv.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg
 
 keywords: ""
 slug: cv # slug is the shorthand URL address... no spaces plz
-title: cv
+title: Mina's Career Journey
 ---
 * I am an **'AND'** person. I was brought up in **China** and **Australia**. I have lived and studied in **China**, **Australia**, **US** and **UK** and I love the intersection of mathematics, economics, and business. I am an **ENT/FJ**, and my favorite motto is **'draw closer and see behind the walls'**.
 

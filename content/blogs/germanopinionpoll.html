@@ -1,0 +1,227 @@
+---
+categories:  
+- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+- ""
+date: "2021-10-20"
+description: US yield curve # the title that will show up once someone gets to this page
+draft: false
+image: cpi.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
+
+keywords: ""
+slug: german # slug is the shorthand URL address... no spaces plz
+title: US yield curve since 1960-01-01
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<pre class="r"><code>library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.4     v dplyr   1.0.7
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   2.0.1     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;mosaic&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre class="r"><code>library(ggthemes)</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;ggthemes&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     theme_map</code></pre>
+<pre class="r"><code>library(lubridate)</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre class="r"><code>library(fivethirtyeight)</code></pre>
+<pre><code>## Some larger datasets need to be installed separately, like senators and
+## house_district_forecast. To install these, we recommend you install the
+## fivethirtyeightdata package by running:
+## install.packages(&#39;fivethirtyeightdata&#39;, repos =
+## &#39;https://fivethirtyeightdata.github.io/drat/&#39;, type = &#39;source&#39;)</code></pre>
+<pre class="r"><code>library(here)</code></pre>
+<pre><code>## here() starts at C:/Users/forma/Desktop/my_website</code></pre>
+<pre class="r"><code>library(skimr)</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;skimr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     n_missing</code></pre>
+<pre class="r"><code>library(janitor)</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>library(vroom)
+library(tidyquant)</code></pre>
+<pre><code>## 载入需要的程辑包：PerformanceAnalytics</code></pre>
+<pre><code>## 载入需要的程辑包：xts</code></pre>
+<pre><code>## 载入需要的程辑包：zoo</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;xts&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     first, last</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;PerformanceAnalytics&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     legend</code></pre>
+<pre><code>## 载入需要的程辑包：quantmod</code></pre>
+<pre><code>## 载入需要的程辑包：TTR</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre><code>## == Need to Learn tidyquant? ====================================================
+## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
+## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
+<pre class="r"><code>library(rvest) # to scrape wikipedia page</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;rvest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     guess_encoding</code></pre>
+<pre class="r"><code>library(scales)</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:vroom&#39;:
+## 
+##     col_factor</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     rescale</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<div id="challenge-2-opinion-polls-for-the-2021-german-elections" class="section level1">
+<h1>Challenge 2: Opinion polls for the 2021 German elections</h1>
+<p>The Guardian newspaper has an <a href="https://www.theguardian.com/world/2021/aug/20/german-election-poll-tracker-who-will-be-the-next-chancellor">election poll tracker for the upcoming German election</a>.
+The list of the opinion polls since Jan 2021 can be found at <a href="https://en.wikipedia.org/wiki/Opinion_polling_for_the_2021_German_federal_election">Wikipedia</a> and your task is to reproduce the graph similar to the one produced by the Guardian.</p>
+<p>The following code will scrape the wikipedia page and import the table in a dataframe.</p>
+<pre class="r"><code>url &lt;- &quot;https://en.wikipedia.org/wiki/Opinion_polling_for_the_2021_German_federal_election&quot;
+
+# similar graphs and analyses can be found at 
+# https://www.theguardian.com/world/2021/jun/21/german-election-poll-tracker-who-will-be-the-next-chancellor
+# https://www.economist.com/graphic-detail/who-will-succeed-angela-merkel
+
+
+# get tables that exist on wikipedia page 
+tables &lt;- url %&gt;% 
+  read_html() %&gt;% 
+  html_nodes(css=&quot;table&quot;)
+
+
+# parse HTML tables into a dataframe called polls 
+# Use purr::map() to create a list of all tables in URL
+polls &lt;- map(tables, . %&gt;% 
+             html_table(fill=TRUE)%&gt;% 
+             janitor::clean_names())</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): strings not representable in native encoding will
+## be translated to UTF-8</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00C4&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00D6&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00E4&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00F6&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00DF&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00C6&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00E6&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00D8&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00F8&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00C5&gt;&#39; to native encoding</code></pre>
+<pre><code>## Warning in FUN(X[[i]], ...): unable to translate &#39;&lt;U+00E5&gt;&#39; to native encoding</code></pre>
+<pre class="r"><code># list of opinion polls
+german_election_polls &lt;- polls[[1]] %&gt;% # the first table on the page contains the list of all opinions polls
+  slice(2:(n()-1)) %&gt;%  # drop the first row, as it contains again the variable names and last row that contains 2017 results
+  mutate(
+         # polls are shown to run from-to, e.g. 9-13 Aug 2021. We keep the last date, 13 Aug here, as the poll date
+         # and we extract it by picking the last 11 characters from that field
+         end_date = str_sub(fieldwork_date, -11),
+         
+         # end_date is still a string, so we convert it into a date object using lubridate::dmy()
+         end_date = dmy(end_date),
+         
+         # we also get the month and week number from the date, if we want to do analysis by month- week, etc.
+         month = month(end_date),
+         week = isoweek(end_date)
+         )
+
+
+colors &lt;- c(&quot;SPD&quot; = &quot;red&quot;,
+            &quot;AFD&quot; = &quot;blue&quot;,
+            &quot;CDU/CSU&quot; = &quot;black&quot;,
+            &quot;Grüne&quot; = &quot;green&quot;,
+            &quot;FDP&quot; = &quot;yellow&quot;,
+            &quot;Linke&quot; = &quot;purple&quot;)
+
+ggplot(german_election_polls, aes(x=end_date)) +
+  geom_point(alpha=0.3, aes(y=spd, color=&quot;SPD&quot;)) +
+  geom_line(alpha=0.5, aes(y=rollmean(spd, 14, na.pad=TRUE), color=&quot;SPD&quot;)) +
+  geom_point(alpha=0.3, aes(y=af_d, color = &quot;AFD&quot;)) +
+  geom_line(alpha=0.5, aes(y=rollmean(af_d, 14, na.pad=TRUE), color = &quot;AFD&quot;)) +
+  geom_point(alpha=0.3, aes(y=union, color = &quot;CDU/CSU&quot;)) +
+  geom_line(alpha=0.5, aes(y=rollmean(union, 14, na.pad=TRUE), color = &quot;CDU/CSU&quot;)) +
+  geom_point(alpha=0.3, aes(y=grune, color = &quot;Grüne&quot;)) +
+  geom_line(alpha=0.5, aes(y=rollmean(grune, 14, na.pad=TRUE), color = &quot;Grüne&quot;)) +
+  geom_point(alpha=0.3, aes(y=fdp, color = &quot;FDP&quot;)) +
+  geom_line(alpha=0.5, aes(y=rollmean(fdp, 14, na.pad=TRUE), color = &quot;FDP&quot;)) +
+  geom_point(alpha=0.3, aes(y=linke, color = &quot;Linke&quot;)) +
+  geom_line(alpha=0.5, aes(y=rollmean(linke, 14, na.pad=TRUE), color = &quot;Linke&quot;)) +
+  labs(x = &quot;Time&quot;,
+         y = &quot;Percentage&quot;,
+       color = &quot;Parties&quot;,
+       title = &quot;Uncertainty is challenging&quot;,
+       subtitle = &quot;14-day rolling average for election polls&quot;) +
+  theme(legend.position=&quot;right&quot;) +
+  scale_color_manual(values = colors)+theme_bw()</code></pre>
+<pre><code>## Warning: Removed 9 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 9 row(s) containing missing values (geom_path).
+
+## Warning: Removed 9 row(s) containing missing values (geom_path).
+
+## Warning: Removed 9 row(s) containing missing values (geom_path).
+
+## Warning: Removed 9 row(s) containing missing values (geom_path).
+
+## Warning: Removed 9 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="/blogs/germanopinionpoll_files/figure-html/scrape_wikipedia_polling_data-1.png" width="672" /></p>
+</div>

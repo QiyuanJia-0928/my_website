@@ -84,24 +84,24 @@ params:
         title: My Life Journey So Far
         url: blogs/life
       - image: Unimelb.jpg
-        subtitle: Lorem Etiam Nullam
-        title: Unimelb
-        url: blogs/magna
-      - image: Mina.jpg
-        subtitle: Nisl Sed Aliquam
-        title: Ipsum
-        url: blogs/ipsum
-      - image: pic05.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Consequat
-        url: blogs/ipsum
-      - image: pic06.jpg
-        subtitle: Feugiat Amet Tempus
-        title: Etiam
-        url: blogs/ipsum
+        subtitle: 
+        title: Opinion polls for the 2021 German elections
+        url: blogs/german
+      - image: cpi.png
+        subtitle: 
+        title: US CPI Component Changes Over Time
+        url: blogs/USCPI
+      - image: yield.jpg
+        subtitle: 
+        title: US Yield Curve
+        url: blogs/yield
+   #   - image: pic06.jpg
+    #    subtitle: Feugiat Amet Tempus
+    #    title: Etiam
+     #   url: blogs/ipsum
   two:
     buttonText: Get Started
     enable: yes
-    subtitle: "This page is dedicated to sharing some of my life and my work on data analysis and I hope you would enjoy exploring the site" 
-    title: Background
+    subtitle: "This page is dedicated to sharing a glimpse of my life and my work on data analysis with love and I hope you enjoy exploring the site." 
+    title: Mina Jia
     url: blogs

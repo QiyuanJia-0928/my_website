@@ -1,0 +1,120 @@
+---
+categories:  
+- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+- ""
+date: "2021-10-20"
+description: US yield curve # the title that will show up once someone gets to this page
+draft: false
+image: cpi.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
+
+keywords: ""
+slug: USCPI # slug is the shorthand URL address... no spaces plz
+title: US yield curve since 1960-01-01
+---
+
+
+```{r load-libraries, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(lubridate)
+library(here)
+library(skimr)
+library(janitor)
+library(httr)
+library(readxl)
+library(vroom)
+library(infer)
+library(tidyquant)
+library(rvest)
+```
+
+
+
+# Challenge 2: How has the CPI and its components changed over the last few years?
+
+Remember how we used the tidyqant package to download CPI data. In this exercise, I would like you to do the following:
+
+1. You can find [CPI components at  FRED](https://fredaccount.stlouisfed.org/public/datalist/843). You should adapt the code from German polls to scrape the FRED website and pull all of the CPI components into a vector. FIY, the list of components is the second table in that webpage.
+1. Once you have a vector of components, you can then pass it to `tidyquant::tq_get(get = "economic.data", from =  "2000-01-01")` to get all data since January 1, 2000
+1. Since the data you download is an index with various starting dates, you need to calculate the yearly, or 12-month change. To do this you need to use the `lag` function, and specifically, `year_change = value/lag(value, 12) - 1`; this means you are comparing the current month's value with that 12 months ago lag(value, 12).
+1. I want you to order components so the higher the yearly change, the earlier does that component appear.
+1. You should also make sure that the **All Items** CPI (CPIAUCSL) appears first.
+1. Add a `geom_smooth()` for each component to get a sense of the overall trend.
+1 You may want to colour the points according to whether yearly change was positive or negative. 
+
+
+```{r cpi_all_components_since_2016_1, echo=FALSE, out.width="100%"}
+url <- "https://fredaccount.stlouisfed.org/public/datalist/843"
+
+tables <- url %>% 
+  read_html() %>% 
+  html_nodes(css="table")
+
+cpi <- map(tables, . %>% 
+             html_table(fill=TRUE)%>% 
+             janitor::clean_names())
+
+cpi_components <- cpi[[2]]
+
+econ_data <- cpi_components %>%
+  select(series_id) %>% 
+  pull() %>% 
+  tq_get(get = "economic.data", from = "2000-01-01")
+
+econ_data_detailed <- econ_data %>% 
+  mutate(year_change = price / lag(price, 12) - 1)
+
+avg_year_chg <- econ_data_detailed %>% 
+  group_by(symbol) %>% 
+  summarize(avg_year_change = mean(year_change, na.rm = TRUE))
+
+
+econ_data_detailed <- left_join(econ_data_detailed, avg_year_chg, by = "symbol") %>% 
+  arrange(desc(avg_year_change))
+
+#econ_data_detailed[1] <- econ_data_detailed[econ_data_detailed$symbol == "CPIAUCSL"]
+
+
+econ_data_detailed <- left_join(econ_data_detailed, cpi_components, by = c("symbol" = "series_id"))
+
+
+econ_data_detailed_1<-econ_data_detailed %>% filter(industry  = )
+
+
+econ_data_detailed$title <- str_replace(econ_data_detailed$title,
+                                        "Consumer Price Index for All Urban Consumers: ",
+                                        "")
+
+econ_data_detailed$title <- str_replace(econ_data_detailed$title,
+                                        " in U.S. City Average",
+                                        "")
+
+new_order <- c(unique(econ_data_detailed$title))
+
+new_order2 <- c(new_order[30], new_order[-30])
+
+econ_data_detailed <- arrange(transform(econ_data_detailed,
+                                        title = factor(title, levels = new_order2)), title)
+
+
+ggplot(econ_data_detailed, aes(x=date, y = year_change)) +
+  geom_point(aes(color = factor(year_change <= 0), alpha = 0.1)) +
+  #geom_point(aes(color="negative", alpha = 0.1)) +
+  geom_smooth(type="loess", color="lightblue") +
+  facet_wrap(~title, scales="free") +
+  labs(x = "Year",
+       y = "YoY % Change",
+       title = "Yearly change of US CPI (All Items) and its components",
+       subtitle = "YoY change being positive or negative") +
+  scale_color_manual(values = c("red", "lightblue")) +
+  theme(legend.position = "none") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+
+
+
+```
