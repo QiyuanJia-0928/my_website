@@ -76,9 +76,6 @@ bike <- bike0 %>%
 
 We can easily create a facet grid that plots bikes hired by month and year.
 
-```{r tfl_month_year_grid_1, echo=FALSE, out.width="100%"}
-knitr::include_graphics(here::here("images", "tfl_distributions_monthly.png"), error = FALSE)
-```
 
 ```{r tfl_month_year_grid, echo=FALSE, out.width="100%"}
 ggplot(bike, aes(bikes_hired)) +
@@ -135,14 +132,11 @@ bike_new3 %>%
   geom_ribbon(aes(xmin = 0, xmax = Inf,ymin=monthly_mean,ymax=monthly_mean+ifelse(actual_month_rental>monthly_mean, 0,actual_month_rental-monthly_mean)),fill="red",alpha=0.4) +
    NULL
 
+bike_new3
   
 ```
 
 The second one looks at percentage changes from the expected level of weekly rentals. The two grey shaded rectangles correspond to Q2 (weeks 14-26) and Q4 (weeks 40-52).
-
-```{r tfl_percent_change, echo=FALSE, out.width="100%"}
-knitr::include_graphics(here::here("images", "tfl_weekly.png"), error = FALSE)
-```
 
 ```{r tfl_percent_change_1, echo=FALSE, out.width="100%"}
 # average_weekly_bikes <- median(bike$bikes_hired, na.rm = TRUE) * 7
@@ -183,10 +177,6 @@ ggplot(bike_weekly, aes(x=week, y=diff)) +
   ylim(-0.5, 1) +
   scale_y_continuous(labels = scales::percent)
   
-```
-
-```{r tfl_percent_change_2, echo=FALSE, out.width="100%"}
-knitr::include_graphics(here::here("images", "tfl_weekly.png"), error = FALSE)
 ```
 
 ```{r tfl_percent_change_3, echo=FALSE, out.width="100%"}
