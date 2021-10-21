@@ -83,18 +83,18 @@ params:
         subtitle: See the world and see myself
         title: My Life Journey So Far
         url: blogs/life
-      - image: Unimelb.jpg
-        subtitle: 
-#        title: Opinion polls for the 2021 German elections
- #       url: blogs/german
- #     - image: cpi.png
-  #      subtitle: 
-        title: US CPI Component Changes Over Time
-        url: blogs/USCPI
       - image: yield.jpg
         subtitle: 
         title: US Yield Curve
         url: blogs/yield
+      - image: Unimelb.jpg
+        subtitle: 
+        title: US CPI Component Changes Over Time 
+        url: blogs/USCPI
+      - image: cpi.png
+        subtitle: 
+        title: Opinion polls for the 2021 German elections
+        url: blogs/german
    #   - image: pic06.jpg
     #    subtitle: Feugiat Amet Tempus
     #    title: Etiam

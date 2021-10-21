@@ -112,6 +112,11 @@ new_order2 <- c(new_order[30], new_order[-30])
 econ_data_detailed <- arrange(transform(econ_data_detailed,
                                         title = factor(title, levels = new_order2)), title)
 
+glimpse(econ_data_detailed)
+```
+
+
+```{r}
 
 ggplot(econ_data_detailed, aes(x=date, y = year_change)) +
   geom_point(aes(color = factor(year_change <= 0), alpha = 0.1)) +
@@ -127,8 +132,6 @@ ggplot(econ_data_detailed, aes(x=date, y = year_change)) +
   scale_y_continuous(labels = scales::percent) +
   theme_bw() +
   theme(legend.position = "none")
-
-
 
 
 

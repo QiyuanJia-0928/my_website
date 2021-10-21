@@ -27,5 +27,32 @@ title: US yield curve since 1960-01-01
 <li>Add a <code>geom_smooth()</code> for each component to get a sense of the overall trend.
 1 You may want to colour the points according to whether yearly change was positive or negative.</li>
 </ol>
-<p><img src="/blogs/USCPI_files/figure-html/cpi_all_components_since_2016_1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre><code>## Rows: 12,753
+## Columns: 11
+## $ symbol          &lt;chr&gt; &quot;CUSR0000SAH21&quot;, &quot;CUSR0000SAH21&quot;, &quot;CUSR0000SAH21&quot;, &quot;CU~
+## $ date            &lt;date&gt; 2000-01-01, 2000-02-01, 2000-03-01, 2000-04-01, 2000-~
+## $ price           &lt;dbl&gt; 116, 119, 118, 118, 118, 121, 124, 123, 126, 129, 128,~
+## $ year_change     &lt;dbl&gt; -0.40170, -0.38548, -0.42120, -0.46065, -0.49271, -0.5~
+## $ avg_year_change &lt;dbl&gt; 0.00463, 0.00463, 0.00463, 0.00463, 0.00463, 0.00463, ~
+## $ title           &lt;fct&gt; &quot;Household Energy&quot;, &quot;Household Energy&quot;, &quot;Household Ene~
+## $ vintage_date    &lt;chr&gt; &quot;Current&quot;, &quot;Current&quot;, &quot;Current&quot;, &quot;Current&quot;, &quot;Current&quot;,~
+## $ units           &lt;chr&gt; &quot;Index 1982-1984=100&quot;, &quot;Index 1982-1984=100&quot;, &quot;Index 1~
+## $ freq            &lt;chr&gt; &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;,~
+## $ seas_adj        &lt;chr&gt; &quot;SA&quot;, &quot;SA&quot;, &quot;SA&quot;, &quot;SA&quot;, &quot;SA&quot;, &quot;SA&quot;, &quot;SA&quot;, &quot;SA&quot;, &quot;SA&quot;, ~
+## $ updated         &lt;chr&gt; &quot;2021-10-13&quot;, &quot;2021-10-13&quot;, &quot;2021-10-13&quot;, &quot;2021-10-13&quot;~</code></pre>
+<pre class="r"><code>ggplot(econ_data_detailed, aes(x=date, y = year_change)) +
+  geom_point(aes(color = factor(year_change &lt;= 0), alpha = 0.1)) +
+  #geom_point(aes(color=&quot;negative&quot;, alpha = 0.1)) +
+  geom_smooth(type=&quot;loess&quot;, color=&quot;lightblue&quot;) +
+  facet_wrap(~title, scales=&quot;free&quot;) +
+  labs(x = &quot;Year&quot;,
+       y = &quot;YoY % Change&quot;,
+       title = &quot;Yearly change of US CPI (All Items) and its components&quot;,
+       subtitle = &quot;YoY change being positive or negative&quot;) +
+  scale_color_manual(values = c(&quot;red&quot;, &quot;lightblue&quot;)) +
+  theme(legend.position = &quot;none&quot;) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_bw() +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/blogs/USCPI_files/figure-html/unnamed-chunk-1-1.png" width="648" style="display: block; margin: auto;" /></p>
 </div>
