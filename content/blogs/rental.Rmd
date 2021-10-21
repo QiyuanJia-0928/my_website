@@ -95,7 +95,7 @@ ggplot(bike, aes(bikes_hired)) +
 
 Look at May and Jun and compare 2020 with the previous years. What's happening?
 
->May and June in 2019 had much more days with bike rentals across the mean compared to 2020 with a distribution that looks flatter. Overall, it seems that May and June 2020 had less bike rentals in total, potentially attributable to bad weather. Similarly it is possible that Covid may have caused people to go outside less, resulting in a lot of days with low number of bike rentals.
+> May and June in 2019 had much more days with bike rentals across the mean compared to 2020 with a distribution that looks flatter. Overall, it seems that May and June 2020 had less bike rentals in total, potentially attributable to bad weather. Similarly it is possible that Covid may have caused people to go outside less, resulting in a lot of days with low number of bike rentals.
 
 ```{r}
 bike_new1 <- bike %>% 
