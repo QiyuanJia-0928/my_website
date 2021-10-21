@@ -41,7 +41,6 @@ bike &lt;- bike0 %&gt;%
           week = isoweek(day)) %&gt;% 
   filter(year &gt;= 2015)</code></pre>
 <p>We can easily create a facet grid that plots bikes hired by month and year.</p>
-<p><img src="C:/Users/forma/Desktop/my_website/images/tfl_distributions_monthly.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><img src="/blogs/rental_files/figure-html/tfl_month_year_grid-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Look at May and Jun and compare 2020 with the previous years. What’s happening?</p>
 <blockquote>
@@ -81,8 +80,21 @@ bike_new3 %&gt;%
   geom_ribbon(aes(xmin = 0, xmax = Inf,ymin=monthly_mean,ymax=monthly_mean+ifelse(actual_month_rental&gt;monthly_mean, 0,actual_month_rental-monthly_mean)),fill=&quot;red&quot;,alpha=0.4) +
    NULL</code></pre>
 <p><img src="/blogs/rental_files/figure-html/unnamed-chunk-1-1.png" width="648" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>bike_new3</code></pre>
+<pre><code>## # A tibble: 68 x 5
+##      mon monthly_mean  year actual_month_rental delta_rental
+##    &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;               &lt;dbl&gt;        &lt;dbl&gt;
+##  1     1       19763.  2016              18914.        -849.
+##  2     1       19763.  2017              20596.         833.
+##  3     1       19763.  2018              20836.        1072.
+##  4     1       19763.  2019              22123.        2359.
+##  5     1       19763.  2020              22893.        3130.
+##  6     1       19763.  2021              13218.       -6545.
+##  7     2       21432.  2016              20608.        -824.
+##  8     2       21432.  2017              22091.         659.
+##  9     2       21432.  2018              20587.        -846.
+## 10     2       21432.  2019              24961.        3529.
+## # ... with 58 more rows</code></pre>
 <p>The second one looks at percentage changes from the expected level of weekly rentals. The two grey shaded rectangles correspond to Q2 (weeks 14-26) and Q4 (weeks 40-52).</p>
-<p><img src="C:/Users/forma/Desktop/my_website/images/tfl_weekly.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><img src="/blogs/rental_files/figure-html/tfl_percent_change_1-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><img src="C:/Users/forma/Desktop/my_website/images/tfl_weekly.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><img src="/blogs/rental_files/figure-html/tfl_percent_change_3-1.png" width="100%" style="display: block; margin: auto;" /></p>

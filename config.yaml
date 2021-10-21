@@ -50,7 +50,7 @@ params:
         url: https://github.com/QiyuanJia-0928/
       - icon: fa-linkedin
         label: LinkedIn
-        url: www.linkedin.com/in/qiyuan-mina-jia
+        url: www.linkedin.com/in/qiyuan-mina-jia/
   image: ''
   name: Mina Jia
   navigation:
@@ -87,10 +87,10 @@ params:
         subtitle: 
         title: US Yield Curve
         url: blogs/yield
-      - image: Unimelb.jpg
-        subtitle: 
-        title: US CPI Component Changes Over Time 
-        url: blogs/USCPI
+ #     - image: Unimelb.jpg
+  #      subtitle: 
+   #     title: US CPI Component Changes Over Time 
+    #    url: blogs/USCPI
       - image: bike.jpg
         subtitle: 
         title: Excess rentals in TfL bike sharing
