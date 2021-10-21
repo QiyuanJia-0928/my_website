@@ -91,10 +91,10 @@ params:
         subtitle: 
         title: US CPI Component Changes Over Time 
         url: blogs/USCPI
-      - image: german.jpg
+      - image: bike.jpg
         subtitle: 
-        title: Opinion polls for the 2021 German elections
-        url: blogs/german
+        title: Excess rentals in TfL bike sharing
+        url: blogs/rental
    #   - image: pic06.jpg
     #    subtitle: Feugiat Amet Tempus
     #    title: Etiam
